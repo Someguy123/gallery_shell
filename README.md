@@ -13,6 +13,7 @@ Bash Script to generate static web galleries. No server-side programs (i.e. PHP,
 It requires no special server-side script to run to view image galleries because everything is pre-rendered. 
 
 It offers several features:
+
 * Responsive layout
 * Thumbnails which fill the browser efficiently
 * Download the original image file
@@ -23,6 +24,21 @@ It offers several features:
 
 This combination of features makes a better user experience than pretty much all the big online photo hosts. 
 All you need is a place to host your plain html and jpeg files. This can also be Amazon S3.
+
+## Fork Info
+
+This is a fork of [the original gallery.sh by Cyclenerd](https://github.com/Cyclenerd/gallery_shell) - maintained by [Someguy123](https://github.com/Someguy123).
+
+This fork adds the following functionality/changes:
+
+* Moved the JPG "image generation" code into a function `generate_imgs` so it can be used for other file types
+* Support for custom user specified image extensions to scan via `MY_IMG_EXTS` - can specify like `MY_IMG_EXTS="webp tiff tga"`
+* Added image generation for PNGs, and JPGs that use `.jpeg` as their file extension
+  * Set `MY_IMG_EXTS` default value to `webp webm apng gif tif tiff tga` which adds support for those file types
+* Adjusted shebang to `#!/usr/bin/env bash` to improve compatibility with systems where bash might not be in `/bin/`
+* Wrapped easily adjustable `MY_` vars with `: ${}` so they can be edited via ENV vars, e.g. `MY_QUALITY=50 MY_TITLE="John's Photos" ./gallery.sh`
+* Added support for `.env` files - searches the current working directory, followed by the script's directory
+
 
 ## Installation
 
